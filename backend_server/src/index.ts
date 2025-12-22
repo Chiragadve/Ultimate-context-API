@@ -65,6 +65,11 @@ app.get('/v1/enrich', async (req, res) => {
     const apiKey = (req.query.key as string) || (req.headers['x-api-key'] as string) || '';
     const userAgent = req.headers['user-agent'] || '';
 
+    // Enforce Mandatory API Key
+    if (!apiKey) {
+        return res.status(401).json({ error: 'Unauthorized: API Key Required' });
+    }
+
     // Rate Limit Check
     const limitResult = await RateLimiter.check(ip, apiKey);
 
