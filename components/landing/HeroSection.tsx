@@ -121,7 +121,7 @@ export const HeroSection = () => {
                             </a>
                         </Button>
                         <Button variant="hero-outline" size="xl" className="group w-full sm:w-auto" asChild>
-                            <a href="#docs">
+                            <a href="/docs">
                                 <BookOpen className="w-5 h-5" />
                                 Read the Docs
                             </a>
