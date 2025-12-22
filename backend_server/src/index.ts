@@ -105,7 +105,11 @@ app.get('/v1/enrich', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Backend API Engine running on http://localhost:${PORT}`);
-    console.log(`Swagger Docs available at http://localhost:${PORT}/api-docs`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Backend API Engine running on http://localhost:${PORT}`);
+        console.log(`Swagger Docs available at http://localhost:${PORT}/api-docs`);
+    });
+}
+
+export default app;
