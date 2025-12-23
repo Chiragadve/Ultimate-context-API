@@ -85,7 +85,9 @@ export const PlaygroundSection = () => {
     };
 
     const copyUrl = () => {
-        navigator.clipboard.writeText(`curl -H "x-api-key: YOUR_KEY" "https://ultimate-context-api.vercel.app/v1${getRequestUrl()}"`);
+        const fields = selectedFields.length > 0 ? selectedFields.join(",") : "";
+        const url = `http://ultimate-context-api.vercel.app/v1/enrich?ip=${ipAddress || "8.8.8.8"}&key="YOUR API KEY"${fields ? `&fields=${fields}` : ''}`;
+        navigator.clipboard.writeText(url);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -210,7 +212,7 @@ export const PlaygroundSection = () => {
                                         ) : (
                                             <Copy className="w-4 h-4" />
                                         )}
-                                        Copy cURL
+                                        Copy URL
                                     </button>
                                 </div>
 
