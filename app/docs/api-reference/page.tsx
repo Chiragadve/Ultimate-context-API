@@ -12,7 +12,7 @@ export default function ApiReferencePage() {
                     Comprehensive reference for the Ultimate Context API.
                 </p>
                 <div className="mt-4 flex gap-2">
-                    <Badge variant="outline" className="border-primary text-primary">Base URL: http://localhost:4000/v1</Badge>
+                    <Badge variant="outline" className="border-primary text-primary">Base URL: https://ultimate-context-api.vercel.app/v1</Badge>
                 </div>
             </div>
 
@@ -67,87 +67,48 @@ export default function ApiReferencePage() {
 
             {/* ENDPOINTS */}
             <section id="endpoints">
-                <h2 className="text-3xl font-bold mb-8">Endpoints</h2>
+                <h2 className="text-3xl font-bold mb-8">Data Segments & Endpoints</h2>
+                <p className="text-muted-foreground mb-8">
+                    The API returns data in "segments". You can request specific segments using the <code>fields</code> parameter to reduce latency and response size.
+                </p>
 
-                <div className="space-y-8">
-                    {/* GET /enrich */}
-                    <div className="glass-card p-6 border border-border rounded-xl">
-                        <div className="flex flex-wrap items-center gap-3 mb-6">
-                            <Badge className="bg-blue-600 hover:bg-blue-700 text-white font-mono">GET</Badge>
-                            <code className="text-lg font-mono font-semibold">/enrich</code>
-                            <span className="text-muted-foreground text-sm">Enrich an IP address with full context.</span>
+                <div className="space-y-16">
+
+                    {/* 1. Core Location */}
+                    <div id="location" className="space-y-4">
+                        <div className="flex items-center gap-3">
+                            <Badge variant="outline" className="bg-blue-500/10 text-blue-500 border-blue-500/20">Core</Badge>
+                            <h3 className="text-2xl font-bold">IP & Location</h3>
                         </div>
+                        <p className="text-muted-foreground">
+                            Precise geolocation data including city, country, coordinates, and ISP information.
+                        </p>
 
-                        {/* Parameters */}
-                        <div className="mb-6">
-                            <h4 className="font-semibold mb-3">Query Parameters</h4>
-                            <div className="overflow-x-auto">
-                                <table className="w-full text-sm text-left">
-                                    <thead className="text-muted-foreground bg-secondary/10">
-                                        <tr>
-                                            <th className="p-2 rounded-l-lg">Parameter</th>
-                                            <th className="p-2">Type</th>
-                                            <th className="p-2">Required</th>
-                                            <th className="p-2 rounded-r-lg">Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr className="border-b border-border/10">
-                                            <td className="p-2 font-mono text-primary">ip</td>
-                                            <td className="p-2">string</td>
-                                            <td className="p-2 text-muted-foreground">No</td>
-                                            <td className="p-2 text-muted-foreground">The IP address to lookup. Defaults to request IP.</td>
-                                        </tr>
-                                        <tr className="border-b border-border/10">
-                                            <td className="p-2 font-mono text-primary">fields</td>
-                                            <td className="p-2">string</td>
-                                            <td className="p-2 text-muted-foreground">No</td>
-                                            <td className="p-2 text-muted-foreground">Comma-separated list (e.g., `location,context.weather`).</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="p-2 font-mono text-primary">debug</td>
-                                            <td className="p-2">boolean</td>
-                                            <td className="p-2 text-muted-foreground">No</td>
-                                            <td className="p-2 text-muted-foreground">Set to `true` to view debug logs.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 className="font-semibold mb-2">Available Fields</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground font-mono">
+                                    <li className="flex gap-2"><span className="text-primary">ip</span> Request IP address</li>
+                                    <li className="flex gap-2"><span className="text-primary">location.city</span> City name</li>
+                                    <li className="flex gap-2"><span className="text-primary">location.country</span> Country name</li>
+                                    <li className="flex gap-2"><span className="text-primary">location.timezone</span> Timezone ID</li>
+                                    <li className="flex gap-2"><span className="text-primary">location.coordinates</span> Lat/Lon object</li>
+                                    <li className="flex gap-2"><span className="text-primary">location.isp</span> Internet Service Provider</li>
+                                </ul>
                             </div>
-                        </div>
+                            <div className="bg-zinc-950 p-4 rounded-xl border border-border font-mono text-xs overflow-x-auto">
+                                <div className="text-muted-foreground mb-2 select-none"># Request Format</div>
+                                <pre className="text-blue-400">
+                                    {`GET /v1/enrich?fields=location.city,location.country,location.coordinates
 
-                        {/* Example Response */}
-                        <div>
-                            <h4 className="font-semibold mb-3">Example Response</h4>
-                            <div className="bg-zinc-950 p-4 rounded-xl border border-border font-mono text-xs overflow-x-auto max-h-[400px]">
-                                <pre className="text-green-400">
-                                    {`{
-  "ip": "8.8.8.8",
+// Response
+{
   "location": {
-    "ip": "8.8.8.8",
     "city": "Mountain View",
     "country": "United States",
-    "timezone": "America/Los_Angeles",
-    "isp": "Google LLC"
-  },
-  "context": {
-    "weather": {
-      "temp_c": 22.5,
-      "condition": "Partly cloudy",
-      "updated": "2024-12-22T14:00"
-    },
-    "currency": {
-      "code": "USD",
-      "rate": 1,
-      "symbol": "$"
-    },
-    "security": {
-      "is_proxy": false,
-      "is_tor": false,
-      "risk_score": 0
-    },
-    "device": {
-       "type": "mobile",
-       "os": "iOS"
+    "coordinates": {
+      "lat": 37.386,
+      "lon": -122.083
     }
   }
 }`}
@@ -155,6 +116,196 @@ export default function ApiReferencePage() {
                             </div>
                         </div>
                     </div>
+
+                    {/* 2. Weather */}
+                    <div id="weather" className="space-y-4">
+                        <div className="flex items-center gap-3">
+                            <Badge variant="outline" className="bg-yellow-500/10 text-yellow-500 border-yellow-500/20">Context</Badge>
+                            <h3 className="text-2xl font-bold">Weather</h3>
+                        </div>
+                        <p className="text-muted-foreground">
+                            Real-time weather conditions for the IP's location.
+                        </p>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 className="font-semibold mb-2">Available Fields</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground font-mono">
+                                    <li className="flex gap-2"><span className="text-primary">context.weather.temp_c</span> Temperature (Celsius)</li>
+                                    <li className="flex gap-2"><span className="text-primary">context.weather.condition</span> Condition text</li>
+                                    <li className="flex gap-2"><span className="text-primary">context.weather.humidity</span> Humidity %</li>
+                                    <li className="flex gap-2"><span className="text-primary">context.weather.wind_kph</span> Wind speed</li>
+                                </ul>
+                            </div>
+                            <div className="bg-zinc-950 p-4 rounded-xl border border-border font-mono text-xs overflow-x-auto">
+                                <pre className="text-yellow-400">
+                                    {`GET /v1/enrich?fields=context.weather
+
+// Response
+{
+  "context": {
+    "weather": {
+      "temp_c": 22.5,
+      "condition": "Partly cloudy",
+      "humidity": 45
+    }
+  }
+}`}
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* 3. Currency */}
+                    <div id="currency" className="space-y-4">
+                        <div className="flex items-center gap-3">
+                            <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20">Context</Badge>
+                            <h3 className="text-2xl font-bold">Currency</h3>
+                        </div>
+                        <p className="text-muted-foreground">
+                            Local currency information associated with the location.
+                        </p>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 className="font-semibold mb-2">Available Fields</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground font-mono">
+                                    <li className="flex gap-2"><span className="text-primary">context.currency.code</span> ISO 4217 Code (e.g. USD)</li>
+                                    <li className="flex gap-2"><span className="text-primary">context.currency.rate</span> Exchange rate to USD</li>
+                                    <li className="flex gap-2"><span className="text-primary">context.currency.symbol</span> Currency symbol</li>
+                                </ul>
+                            </div>
+                            <div className="bg-zinc-950 p-4 rounded-xl border border-border font-mono text-xs overflow-x-auto">
+                                <pre className="text-green-400">
+                                    {`GET /v1/enrich?fields=context.currency
+
+// Response
+{
+  "context": {
+    "currency": {
+      "code": "EUR",
+      "rate": 0.92,
+      "symbol": "€"
+    }
+  }
+}`}
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* 4. Holidays */}
+                    <div id="holidays" className="space-y-4">
+                        <div className="flex items-center gap-3">
+                            <Badge variant="outline" className="bg-pink-500/10 text-pink-500 border-pink-500/20">Context</Badge>
+                            <h3 className="text-2xl font-bold">Holidays</h3>
+                        </div>
+                        <p className="text-muted-foreground">
+                            Public holiday information for the location.
+                        </p>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 className="font-semibold mb-2">Available Fields</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground font-mono">
+                                    <li className="flex gap-2"><span className="text-primary">context.holidays.is_holiday</span> Boolean status</li>
+                                    <li className="flex gap-2"><span className="text-primary">context.holidays.holiday_name</span> Name of holiday</li>
+                                </ul>
+                            </div>
+                            <div className="bg-zinc-950 p-4 rounded-xl border border-border font-mono text-xs overflow-x-auto">
+                                <pre className="text-pink-400">
+                                    {`GET /v1/enrich?fields=context.holidays
+
+// Response
+{
+  "context": {
+    "holidays": {
+      "is_holiday": true,
+      "holiday_name": "Christmas Day"
+    }
+  }
+}`}
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* 5. Security */}
+                    <div id="security" className="space-y-4">
+                        <div className="flex items-center gap-3">
+                            <Badge variant="outline" className="bg-red-500/10 text-red-500 border-red-500/20">Context</Badge>
+                            <h3 className="text-2xl font-bold">Security</h3>
+                        </div>
+                        <p className="text-muted-foreground">
+                            Risk analysis and security context for the IP address.
+                        </p>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 className="font-semibold mb-2">Available Fields</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground font-mono">
+                                    <li className="flex gap-2"><span className="text-primary">context.security.is_proxy</span> Proxy detection</li>
+                                    <li className="flex gap-2"><span className="text-primary">context.security.is_tor</span> Tor code detection</li>
+                                    <li className="flex gap-2"><span className="text-primary">context.security.risk_score</span> 0-100 Risk Score</li>
+                                </ul>
+                            </div>
+                            <div className="bg-zinc-950 p-4 rounded-xl border border-border font-mono text-xs overflow-x-auto">
+                                <pre className="text-red-400">
+                                    {`GET /v1/enrich?fields=context.security
+
+// Response
+{
+  "context": {
+    "security": {
+      "is_proxy": true,
+      "is_tor": false,
+      "risk_score": 85
+    }
+  }
+}`}
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* 6. Device */}
+                    <div id="device" className="space-y-4">
+                        <div className="flex items-center gap-3">
+                            <Badge variant="outline" className="bg-purple-500/10 text-purple-500 border-purple-500/20">Context</Badge>
+                            <h3 className="text-2xl font-bold">Device</h3>
+                        </div>
+                        <p className="text-muted-foreground">
+                            User agent analysis to determine device type and OS.
+                        </p>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 className="font-semibold mb-2">Available Fields</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground font-mono">
+                                    <li className="flex gap-2"><span className="text-primary">context.device.type</span> 'mobile' | 'desktop'</li>
+                                    <li className="flex gap-2"><span className="text-primary">context.device.os</span> Operating System</li>
+                                    <li className="flex gap-2"><span className="text-primary">context.device.browser</span> Browser Name</li>
+                                </ul>
+                            </div>
+                            <div className="bg-zinc-950 p-4 rounded-xl border border-border font-mono text-xs overflow-x-auto">
+                                <pre className="text-purple-400">
+                                    {`GET /v1/enrich?fields=context.device
+
+// Response
+{
+  "context": {
+    "device": {
+      "type": "desktop",
+      "os": "Windows",
+      "browser": "Chrome"
+    }
+  }
+}`}
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </div>
