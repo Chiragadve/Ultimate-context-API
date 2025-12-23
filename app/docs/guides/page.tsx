@@ -1,6 +1,6 @@
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal, ShoppingCart, ShieldAlert } from "lucide-react";
+import { Terminal, ShoppingCart, ShieldAlert, Globe, BarChart3 } from "lucide-react";
 
 export default function GuidesPage() {
     return (
@@ -59,6 +59,70 @@ if (data.context.holidays.is_holiday) {
 if (context.security.is_tor || context.security.risk_score > 80) {
     return res.status(403).send("Access Denied: High Risk detected");
 }`}
+                    </pre>
+                </div>
+            </section>
+
+            {/* Use Case 3: Media & Content */}
+            <section className="space-y-4">
+                <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-500/20 rounded-lg text-blue-500">
+                        <Globe className="w-6 h-6" />
+                    </div>
+                    <h2 className="text-2xl font-bold">Hyper-Personalized Content</h2>
+                </div>
+                <p className="text-muted-foreground">
+                    Drive engagement with hyper-personalized experiences. Greet users with "Good Morning from [City]" or adapt your UI based on their local weather (e.g., suggesting indoor activities during rain). Make every visitor feel like a local.
+                </p>
+                <div className="bg-zinc-950 p-4 rounded-xl border border-border font-mono text-sm overflow-x-auto">
+                    <pre className="text-blue-300">
+                        {`const { location, context } = await client.enrich({ ip: userIP });
+
+// Personalized Greeting
+const greeting = \`Good Morning from \${location.city}!\`;
+
+// Weather-based UI
+if (context.weather.condition.includes('rain')) {
+  recommendIndoorActivities();
+} else if (context.weather.temp_c > 25) {
+  recommendOutdoorGear();
+}`}
+                    </pre>
+                </div>
+            </section>
+
+            {/* Use Case 4: Data & Analytics */}
+            <section className="space-y-4">
+                <div className="flex items-center gap-3">
+                    <div className="p-2 bg-purple-500/20 rounded-lg text-purple-500">
+                        <BarChart3 className="w-6 h-6" />
+                    </div>
+                    <h2 className="text-2xl font-bold">Enhanced Analytics Logging</h2>
+                </div>
+                <p className="text-muted-foreground">
+                    Turn anonymous traffic into actionable insights. Enrich every log entry with precise city-level location, connection type, and device specifics. Understand exactly where your users are coming from to optimize marketing spend and regional strategy.
+                </p>
+                <div className="bg-zinc-950 p-4 rounded-xl border border-border font-mono text-sm overflow-x-auto">
+                    <pre className="text-blue-300">
+                        {`// Middleware Logger
+const logTraffic = async (req, next) => {
+  const { location, context } = await client.enrich({ 
+    ip: req.ip, 
+    fields: 'location.city,context.device,context.security' 
+  });
+
+  analytics.track({
+    event: 'Page View',
+    userId: req.user?.id,
+    metadata: {
+      city: location.city,
+      deviceType: context.device.type, // 'mobile' | 'desktop'
+      isProxy: context.security.is_proxy
+    }
+  });
+  
+  next();
+};`}
                     </pre>
                 </div>
             </section>
