@@ -74,7 +74,7 @@ export default function LoginPage() {
                 </div>
 
                 <div className="mb-8 text-center">
-                    <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">
+                    <h1 className="text-2xl font-bold text-foreground">
                         {isSignUp ? 'Create Account' : 'Welcome Back'}
                     </h1>
                     <p className="text-muted-foreground text-sm mt-2">
