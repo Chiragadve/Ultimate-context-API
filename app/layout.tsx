@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ultimate-context-api.vercel.app"),
+  metadataBase: new URL("https://ultimatecontextapi.vercel.app"),
   title: {
     default: "Ultimate Context API",
     template: "%s | Ultimate Context API",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ultimate Context API",
     description: "Real-time context in milliseconds. Location, Weather, Currency, Security - all in one API.",
-    url: "https://ultimate-context-api.vercel.app",
+    url: "https://ultimatecontextapi.vercel.app",
     siteName: "Ultimate Context API",
     locale: "en_US",
     type: "website",
