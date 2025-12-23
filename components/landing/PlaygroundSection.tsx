@@ -86,7 +86,7 @@ export const PlaygroundSection = () => {
 
     const copyUrl = () => {
         const fields = selectedFields.length > 0 ? selectedFields.join(",") : "";
-        const url = `http://ultimate-context-api.vercel.app/v1/enrich?ip=${ipAddress || "8.8.8.8"}&key="YOUR API KEY"${fields ? `&fields=${fields}` : ''}`;
+        const url = `http://ultimate-context-api.vercel.app/v1/enrich?ip=${ipAddress || "8.8.8.8"}&key=YOUR_API_KEY${fields ? `&fields=${fields}` : ''}`;
         navigator.clipboard.writeText(url);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
