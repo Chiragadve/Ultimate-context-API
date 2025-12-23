@@ -18,6 +18,7 @@ const fieldOptions = [
 
 export const PlaygroundSection = () => {
     const [ipAddress, setIpAddress] = useState("");
+    const [apiKey, setApiKey] = useState("");
     const [selectedFields, setSelectedFields] = useState<string[]>(["location", "context.weather", "context.currency"]);
     const [response, setResponse] = useState<object | null>(null);
     const [loading, setLoading] = useState(false);
@@ -41,18 +42,34 @@ export const PlaygroundSection = () => {
     };
 
     const fetchData = useCallback(async () => {
+        if (!apiKey) {
+            setError("Please enter your API Key to test the endpoint.");
+            return;
+        }
+
         setLoading(true);
         setError(null);
 
         try {
             const fields = selectedFields.length > 0 ? selectedFields.join(",") : "";
-            // Point to localhost:4000 for backend
-            const url = `http://localhost:4000/v1/enrich?ip=${ipAddress || "8.8.8.8"}${fields ? `&fields=${fields}` : ''}`;
+            // Point to Production URL
+            const url = `https://ultimate-context-api.vercel.app/v1/enrich?ip=${ipAddress || "8.8.8.8"}${fields ? `&fields=${fields}` : ''}`;
 
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                headers: {
+                    "x-api-key": apiKey
+                }
+            });
 
             if (!res.ok) {
-                throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                // Try to parse error message from JSON
+                try {
+                    const errData = await res.json();
+                    throw new Error(errData.error || `HTTP ${res.status}: ${res.statusText}`);
+                } catch (e) {
+                    if (e instanceof Error && e.message.startsWith("HTTP")) throw e;
+                    throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                }
             }
 
             const data = await res.json();
@@ -63,7 +80,7 @@ export const PlaygroundSection = () => {
         } finally {
             setLoading(false);
         }
-    }, [ipAddress, selectedFields]);
+    }, [ipAddress, selectedFields, apiKey]);
 
     const toggleField = (fieldId: string) => {
         setSelectedFields((prev) =>
@@ -74,9 +91,8 @@ export const PlaygroundSection = () => {
     };
 
     const copyUrl = () => {
-        navigator.clipboard.writeText(`http://localhost:4000/v1${getRequestUrl()}`);
+        navigator.clipboard.writeText(`curl -H "x-api-key: YOUR_KEY" "https://ultimate-context-api.vercel.app/v1${getRequestUrl()}"`);
         setCopied(true);
-        // Removed toast call to avoid installing toast system
         setTimeout(() => setCopied(false), 2000);
     };
 
@@ -107,7 +123,7 @@ export const PlaygroundSection = () => {
                         <span className="gradient-text">Ultimate Context API</span>
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        See real data from your IP address. Customize fields and explore the response.
+                        See real data from your IP address. Enter your key to verify behavior.
                     </p>
                 </motion.div>
 
@@ -123,6 +139,23 @@ export const PlaygroundSection = () => {
                             {/* Left Column - Input */}
                             <div className="p-6 lg:p-8">
                                 <h3 className="text-lg font-semibold mb-6 text-foreground">Configure Request</h3>
+
+                                {/* API Key Input */}
+                                <div className="mb-6">
+                                    <label className="block text-sm font-medium text-muted-foreground mb-2">
+                                        API Key
+                                    </label>
+                                    <input
+                                        type="password"
+                                        value={apiKey}
+                                        onChange={(e) => setApiKey(e.target.value)}
+                                        placeholder="Enter your API Key..."
+                                        className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-mono text-sm"
+                                    />
+                                    <p className="text-xs text-muted-foreground mt-2">
+                                        Don't have one? <a href="/login" className="text-primary hover:underline">Get started for free</a>.
+                                    </p>
+                                </div>
 
                                 {/* IP Input */}
                                 <div className="mb-6">
@@ -167,7 +200,7 @@ export const PlaygroundSection = () => {
 
                                 {/* Execute Button */}
                                 <Button
-                                    variant="default" // Changed from hero to avoid gradient conflict
+                                    variant="default"
                                     size="lg"
                                     className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all"
                                     onClick={fetchData}
@@ -200,7 +233,7 @@ export const PlaygroundSection = () => {
                                         ) : (
                                             <Copy className="w-4 h-4" />
                                         )}
-                                        Copy URL
+                                        Copy cURL
                                     </button>
                                 </div>
 
@@ -224,7 +257,7 @@ export const PlaygroundSection = () => {
                                             <div className="text-rose-400">
                                                 <span className="text-rose-500 font-semibold">Error:</span> {error}
                                                 <p className="mt-2 text-muted-foreground/70">
-                                                    Make sure the API server is running at localhost:4000
+                                                    Ensure API Key is valid
                                                 </p>
                                             </div>
                                         )}
