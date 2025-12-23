@@ -65,7 +65,7 @@ The client can be configured with the following options:
 | Option | Type | Description |
 | --- | --- | --- |
 | `apiKey` | `string` | Your API Key. Defaults to `process.env['ULTIMATE_CONTEXT_API_KEY']`. |
-| `baseURL` | `string` | Base URL for the API. Defaults to `http://localhost:4000/v1`. |
+| `baseURL` | `string` | Base URL for the API. Defaults to `https://ultimate-context-api.vercel.app/v1`. |
 
 ## Error Handling
 

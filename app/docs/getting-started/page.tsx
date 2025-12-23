@@ -65,7 +65,7 @@ export default function GettingStartedPage() {
                         <h3 className="text-lg font-semibold mb-2 text-foreground/80">cURL</h3>
                         <div className="bg-zinc-950 p-4 rounded-xl border border-border font-mono text-sm overflow-x-auto">
                             <pre className="text-blue-400">
-                                {`curl -X GET "http://localhost:4000/v1/enrich?ip=8.8.8.8" \\
+                                {`curl -X GET "https://ultimate-context-api.vercel.app/v1/enrich?ip=8.8.8.8" \\
      -H "x-api-key: YOUR_API_KEY"`}
                             </pre>
                         </div>
@@ -78,7 +78,7 @@ export default function GettingStartedPage() {
                             <pre className="text-green-400">
                                 {`const apiKey = 'YOUR_API_KEY';
 
-fetch('http://localhost:4000/v1/enrich?ip=8.8.8.8', {
+fetch('https://ultimate-context-api.vercel.app/v1/enrich?ip=8.8.8.8', {
   headers: {
     'x-api-key': apiKey
   }
