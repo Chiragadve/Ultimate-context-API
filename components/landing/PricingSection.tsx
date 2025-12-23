@@ -214,7 +214,7 @@ export const PricingSection = () => {
                     transition={{ duration: 0.6, delay: 0.6 }}
                     className="text-center text-sm text-muted-foreground mt-12"
                 >
-                    Trusted by 10,000+ developers worldwide. No credit card required to start.
+                    Trusted by developers worldwide. No credit card required to start.
                 </motion.p>
             </div>
 
