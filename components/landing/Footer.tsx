@@ -6,19 +6,18 @@ import Link from "next/link";
 
 const footerLinks = {
     product: [
-        { label: "Docs", href: "#docs" },
-        { label: "API Reference", href: "#" },
+        { label: "Docs", href: "/docs" },
+        { label: "API Reference", href: "/docs/api-reference" },
         { label: "Pricing", href: "#pricing" },
-        { label: "Changelog", href: "#" },
+        { label: "Use Cases", href: "/docs/guides" },
     ],
     resources: [
-        { label: "Use Cases", href: "#use-cases" },
         { label: "Playground", href: "#playground" },
-        { label: "Status", href: "#" },
-        { label: "Blog", href: "#" },
+        { label: "Status", href: "/docs" },
+        { label: "Blog", href: "/docs" },
     ],
     company: [
-        { label: "About", href: "#" },
+        { label: "About", href: "/" },
         { label: "Contact", href: "#" },
         { label: "Terms", href: "#" },
         { label: "Privacy", href: "#" },
@@ -26,9 +25,9 @@ const footerLinks = {
 };
 
 const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Mail, href: "mailto:hello@contextapi.com", label: "Email" },
+    { icon: Github, href: "https://github.com/Chiragadve/Ultimate-context-API", label: "GitHub" },
+    { icon: Twitter, href: "https://x.com/chiragadve", label: "Twitter" },
+    { icon: Mail, href: "mailto:chiragadve4@gmail.com", label: "Email" },
 ];
 
 export const Footer = () => {
