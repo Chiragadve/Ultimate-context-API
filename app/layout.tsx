@@ -13,8 +13,26 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Context API",
-  description: "The Ultimate Context API",
+  metadataBase: new URL("https://ultimate-context-api.vercel.app"),
+  title: {
+    default: "Ultimate Context API",
+    template: "%s | Ultimate Context API",
+  },
+  description: "The API that gives you real-time location, weather, currency, and security context for your users in < 50ms.",
+  openGraph: {
+    title: "Ultimate Context API",
+    description: "Real-time context in milliseconds. Location, Weather, Currency, Security - all in one API.",
+    url: "https://ultimate-context-api.vercel.app",
+    siteName: "Ultimate Context API",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ultimate Context API",
+    description: "Real-time context in milliseconds. Location, Weather, Currency, Security - all in one API.",
+    creator: "@chiragadve",
+  },
 };
 
 export default function RootLayout({
