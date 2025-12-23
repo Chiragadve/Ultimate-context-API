@@ -18,7 +18,6 @@ const fieldOptions = [
 
 export const PlaygroundSection = () => {
     const [ipAddress, setIpAddress] = useState("");
-    const [apiKey, setApiKey] = useState("");
     const [selectedFields, setSelectedFields] = useState<string[]>(["location", "context.weather", "context.currency"]);
     const [response, setResponse] = useState<object | null>(null);
     const [loading, setLoading] = useState(false);
@@ -42,11 +41,6 @@ export const PlaygroundSection = () => {
     };
 
     const fetchData = useCallback(async () => {
-        if (!apiKey) {
-            setError("Please enter your API Key to test the endpoint.");
-            return;
-        }
-
         setLoading(true);
         setError(null);
 
@@ -57,7 +51,7 @@ export const PlaygroundSection = () => {
 
             const res = await fetch(url, {
                 headers: {
-                    "x-api-key": apiKey
+                    "x-api-key": "sk_live_TEST_e7aa42e65145df137a6c839a220c0f91"
                 }
             });
 
@@ -80,7 +74,7 @@ export const PlaygroundSection = () => {
         } finally {
             setLoading(false);
         }
-    }, [ipAddress, selectedFields, apiKey]);
+    }, [ipAddress, selectedFields]);
 
     const toggleField = (fieldId: string) => {
         setSelectedFields((prev) =>
@@ -123,7 +117,7 @@ export const PlaygroundSection = () => {
                         <span className="gradient-text">Ultimate Context API</span>
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        See real data from your IP address. Enter your key to verify behavior.
+                        See real data from your IP address. Customize fields and explore the response.
                     </p>
                 </motion.div>
 
@@ -139,23 +133,6 @@ export const PlaygroundSection = () => {
                             {/* Left Column - Input */}
                             <div className="p-6 lg:p-8">
                                 <h3 className="text-lg font-semibold mb-6 text-foreground">Configure Request</h3>
-
-                                {/* API Key Input */}
-                                <div className="mb-6">
-                                    <label className="block text-sm font-medium text-muted-foreground mb-2">
-                                        API Key
-                                    </label>
-                                    <input
-                                        type="password"
-                                        value={apiKey}
-                                        onChange={(e) => setApiKey(e.target.value)}
-                                        placeholder="Enter your API Key..."
-                                        className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-mono text-sm"
-                                    />
-                                    <p className="text-xs text-muted-foreground mt-2">
-                                        Don't have one? <a href="/login" className="text-primary hover:underline">Get started for free</a>.
-                                    </p>
-                                </div>
 
                                 {/* IP Input */}
                                 <div className="mb-6">
@@ -257,7 +234,7 @@ export const PlaygroundSection = () => {
                                             <div className="text-rose-400">
                                                 <span className="text-rose-500 font-semibold">Error:</span> {error}
                                                 <p className="mt-2 text-muted-foreground/70">
-                                                    Ensure API Key is valid
+                                                    Make sure the API server is operational
                                                 </p>
                                             </div>
                                         )}
