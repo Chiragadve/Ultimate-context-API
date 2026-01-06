@@ -234,8 +234,6 @@ Here's what you get from a single API call:
 
 ![Postman API Demo](./public/Recording2025-12-23133746-ezgif.com-video-to-gif-converter.gif)
 
-![Postman Screenshot](./public/postman.png)
-
 ---
 
 ### Website Preview
@@ -246,8 +244,8 @@ Here's what you get from a single API call:
 #### Homepage
 ![Homepage](./public/1.png)
 
-#### Documentation
-![Documentation](./public/2.png)
+#### Playground
+![Playground](./public/2.png)
 
 #### Dashboard
 ![Dashboard](./public/3.png)
