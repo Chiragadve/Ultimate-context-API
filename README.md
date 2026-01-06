@@ -230,40 +230,27 @@ Here's what you get from a single API call:
 
 ## 🎥 Demo & Screenshots
 
-### API Performance
+### API Testing with Postman
 
-<!-- 
-📹 ADD YOUR POSTMAN VIDEO HERE
-Upload your video to the repository and update the path below.
-Recommended: GIF format for auto-play, or MP4 for full video.
--->
+![Postman API Demo](./Recording2025-12-23133746-ezgif.com-video-to-gif-converter.gif)
 
-> **Coming Soon:** API performance demonstration video
-
-<!-- Example: -->
-<!-- ![API Performance Demo](./docs/assets/postman-demo.gif) -->
+![Postman Screenshot](./postman.png)
 
 ---
 
 ### Website Preview
 
-<!-- 
-🖼️ ADD YOUR WEBSITE SCREENSHOTS HERE
-Upload images to a /docs/assets folder and reference them below.
-Recommended dimensions: 1280x720 or 1920x1080
--->
-
 <details>
 <summary>📸 Click to view website screenshots</summary>
 
-> **Add your screenshots here:**
+#### Homepage
+![Homepage](./1.png)
 
-| Page | Screenshot |
-|------|------------|
-| Landing Page | `<!-- ![Landing](./docs/assets/landing.png) -->` |
-| Documentation | `<!-- ![Docs](./docs/assets/docs.png) -->` |
-| Dashboard | `<!-- ![Dashboard](./docs/assets/dashboard.png) -->` |
-| API Playground | `<!-- ![Playground](./docs/assets/playground.png) -->` |
+#### Documentation
+![Documentation](./2.png)
+
+#### Dashboard
+![Dashboard](./3.png)
 
 </details>
 
