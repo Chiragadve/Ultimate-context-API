@@ -232,9 +232,9 @@ Here's what you get from a single API call:
 
 ### API Testing with Postman
 
-![Postman API Demo](./Recording2025-12-23133746-ezgif.com-video-to-gif-converter.gif)
+![Postman API Demo](./public/Recording2025-12-23133746-ezgif.com-video-to-gif-converter.gif)
 
-![Postman Screenshot](./postman.png)
+![Postman Screenshot](./public/postman.png)
 
 ---
 
@@ -244,13 +244,13 @@ Here's what you get from a single API call:
 <summary>📸 Click to view website screenshots</summary>
 
 #### Homepage
-![Homepage](./1.png)
+![Homepage](./public/1.png)
 
 #### Documentation
-![Documentation](./2.png)
+![Documentation](./public/2.png)
 
 #### Dashboard
-![Dashboard](./3.png)
+![Dashboard](./public/3.png)
 
 </details>
 
