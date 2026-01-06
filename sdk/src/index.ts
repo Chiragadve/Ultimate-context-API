@@ -46,7 +46,7 @@ export class UltimateContext {
         }
 
         this.client = axios.create({
-            baseURL: config.baseURL || 'https://ultimate-context-api.vercel.app/v1', // Default to production
+            baseURL: config.baseURL || 'https://ultimatecontextapi.vercel.app/v1', // Default to production
             headers: {
                 'x-api-key': this.apiKey,
                 'Content-Type': 'application/json',

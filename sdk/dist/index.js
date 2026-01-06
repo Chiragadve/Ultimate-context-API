@@ -12,7 +12,7 @@ class UltimateContext {
             console.warn('UltimateContext: No API key provided. Requests may be limited.');
         }
         this.client = axios_1.default.create({
-            baseURL: config.baseURL || 'http://localhost:4000/v1', // Default to local for now, strictly per project state
+            baseURL: config.baseURL || 'https://ultimatecontextapi.vercel.app/v1', // Default to production
             headers: {
                 'x-api-key': this.apiKey,
                 'Content-Type': 'application/json',

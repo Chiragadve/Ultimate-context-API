@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/ultimate-context"><img src="https://img.shields.io/npm/v/ultimate-context.svg?style=flat-square&color=00C853" alt="npm version"></a>
   <a href="https://github.com/Chiragadve/Ultimate-context-API/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License"></a>
-  <a href="https://ultimate-context-api.vercel.app"><img src="https://img.shields.io/badge/demo-live-brightgreen.svg?style=flat-square" alt="Live Demo"></a>
+  <a href="https://ultimatecontextapi.vercel.app"><img src="https://img.shields.io/badge/demo-live-brightgreen.svg?style=flat-square" alt="Live Demo"></a>
   <img src="https://img.shields.io/badge/TypeScript-Ready-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">
 </p>
 
@@ -94,12 +94,12 @@ Browser, OS & Device type
 
 ### 1. Get Your API Key
 
-Visit the [Dashboard](https://ultimate-context-api.vercel.app/dashboard) to generate your free API key.
+Visit the [Dashboard](https://ultimatecontextapi.vercel.app/dashboard) to generate your free API key.
 
 ### 2. Make Your First Request
 
 ```bash
-curl "https://ultimate-context-api.vercel.app/v1/enrich?ip=8.8.8.8&key=YOUR_API_KEY"
+curl "https://ultimatecontextapi.vercel.app/v1/enrich?ip=8.8.8.8&key=YOUR_API_KEY"
 ```
 
 ### 3. That's It! 🎉
