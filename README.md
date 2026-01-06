@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Chiragadve/Ultimate-context-API/main/public/logo.png" alt="Ultimate Context API" width="120" height="120">
+  <img src="./logo.png" alt="Ultimate Context API" width="120" height="120">
 </p>
 
 <h1 align="center">🌐 Ultimate Context API</h1>
@@ -21,7 +21,7 @@
   <a href="#-api-response">API Response</a> •
   <a href="#-sdk">SDK</a> •
   <a href="#-demo">Demo</a> •
-  <a href="#-docs">Docs</a>
+  <a href="https://ultimatecontextapi.vercel.app/docs">Docs</a>
 </p>
 
 ---
@@ -407,7 +407,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 </p>
 
 <p align="center">
-  <a href="https://ultimate-context-api.vercel.app">🌐 Live Demo</a> •
-  <a href="https://ultimate-context-api.vercel.app/docs">📚 Documentation</a> •
+  <a href="https://ultimatecontextapi.vercel.app">🌐 Live Demo</a> •
+  <a href="https://ultimatecontextapi.vercel.app/docs">📚 Documentation</a> •
   <a href="https://www.npmjs.com/package/ultimate-context">📦 NPM Package</a>
 </p>
